@@ -1,0 +1,54 @@
+PODS:
+  - Alamofire (4.8.2)
+  - FSPagerView (0.8.2)
+  - HandyJSON (4.2.0)
+  - Kingfisher (4.10.1)
+  - MJRefresh (3.2.0)
+  - Moya (9.0.0):
+    - Moya/Core (= 9.0.0)
+  - Moya/Core (9.0.0):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Result (3.2.4)
+  - RxSwift (4.5.0)
+  - SGPagingView (1.6.1)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - FSPagerView
+  - HandyJSON (= 4.2.0)
+  - Kingfisher (~> 4.0)
+  - MJRefresh
+  - Moya (~> 9.0.0)
+  - RxSwift (~> 4.5.0)
+  - SGPagingView (~> 1.6.0)
+  - SnapKit (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - FSPagerView
+    - HandyJSON
+    - Kingfisher
+    - MJRefresh
+    - Moya
+    - Result
+    - RxSwift
+    - SGPagingView
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
+  HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SGPagingView: 11753f76f2fa9f306d152f33e833f735c0751def
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: 2c0e5f5be36928fd63c3cb05e9f885a09757764c
+
+COCOAPODS: 1.7.1
