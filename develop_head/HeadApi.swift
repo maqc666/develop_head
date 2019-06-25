@@ -9,6 +9,7 @@
 
 import Moya
 import HandyJSON
+import RxSwift
 
 enum HeadApi{
     case banner
@@ -108,6 +109,38 @@ extension HeadApi{
 
 
 let ApiProvider = MoyaProvider<HeadApi>()
+
+enum MyError:Error{
+    case jsonError
+    case dataError
+}
+
+extension ObservableType where E == Response{
+    public func mapModel<T:HandyJSON>(_ type:T.Type) -> Observable<T>{
+
+        return flatMap{ response -> Observable<T> in
+            let r = response.mapModel(T.self)
+            guard r != nil else{
+                return Observable<T>.error(MyError.jsonError)
+            }
+            if r!.errcode != 0{
+                return Observable<T>.error(MyError.dataError)
+            }
+            return Observable.just(r!.data!)
+
+        }
+    }
+}
+
+extension Response{
+    func mapModel<T>(_ type:T.Type) -> BaseResponse<T>? {
+        let json = String(data:data, encoding: .utf8)
+        let ret = BaseResponse<T>.deserialize(from:json)
+        return ret;
+    }
+}
+
+
 
 extension MoyaProvider {
     @discardableResult

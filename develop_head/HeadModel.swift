@@ -10,11 +10,19 @@ import Foundation
 import HandyJSON
 
 
-struct BaseResponse<T>:HandyJSON {
+extension Array :HandyJSON{
+    
+}
+
+public struct BaseResponse<T>:HandyJSON {
     var data : T?
     var errcode : Int = -1
     var msg : String?
     var ret : Int = -1
+    
+    public init(){
+        
+    }
 }
 
 struct BannerModelArticle:HandyJSON{

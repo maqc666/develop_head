@@ -9,36 +9,28 @@
 import UIKit
 import SGPagingView
 import SnapKit
-
+import RxSwift
 
 class FeaturedViewController: UIViewController {
-    private var articleViewModel:ArticleViewModel?
+    private let disposeBag = DisposeBag()
     private var allControllers:[BaseArticleTableViewController]?
     private var pageTitleView:SGPageTitleView?;
     private var pageContentScrollView:SGPageContentScrollView?;
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor.white;
-
         loadTitle()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 // MARK:data
 extension FeaturedViewController{
     func loadTitle() {
-//        let group = DispatchGroup()
-        ApiProvider.request(.tab_post_nodes, model: [TabPostNode].self) {
-            self.setupTitle($0!)
-        }
+   ApiProvider.rx.request(.tab_post_nodes).asObservable().mapModel([TabPostNode].self).retry(3).subscribe(onNext: {
+            self.setupTitle($0)
+        }, onError: { (err) in
+            print("onerr",err)
+        }).disposed(by: disposeBag)
     }
 }
 
