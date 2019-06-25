@@ -7,9 +7,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import RxDataSources
+
 class ArticleViewModel{
     private var page:Int = 1
     
+    var data = BehaviorSubject<[SectionModel<String,Article>]>(value:[])
+    var reload = PublishSubject<Bool>()
     
     var callback:Callback<Bool>?
     var articleModel:ArticleModel?
@@ -21,15 +27,19 @@ class ArticleViewModel{
         
         ApiProvider.request(.dailies("latest"), model:ArticleModel.self) {
             self.articleModel = $0
-            self.callback?(true)
+            self.data.onNext([SectionModel(model:"1",items:self.articleModel!.article!)])
+                self.reload.onNext(true)
         }
+        
+        
     }
     
     func requestPreDate() {
         ApiProvider.request(.dailies(articleModel!.preDate!), model:ArticleModel.self) {
             let old = self.articleModel!.article
             self.articleModel?.article = old! + $0!.article!
-            self.callback?(false)
+            self.data.onNext([SectionModel(model:"1",items:self.articleModel!.article!)])
+            self.reload.onNext(false)
         }
     }
     

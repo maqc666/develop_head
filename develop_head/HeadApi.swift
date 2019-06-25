@@ -19,6 +19,9 @@ enum HeadApi{
     
     case subjects(_ f:String) //发现页面编辑推荐 和随机推荐
     case team_subjects(_ f:String) //独家号
+    case subjects_search(page:Int, q:String)//查询独家号
+    case articles_search(page:Int, q:String)//文章查询
+    case tags_search(page:Int, q:String)//标签查询
 }
 
 
@@ -44,8 +47,13 @@ extension HeadApi:TargetType {
             p = "subjects"
         case .team_subjects:
             p = "team_subjects"
+        case .subjects_search:
+            p = "subjects/search"
+        case .articles_search:
+            p = "articles/search"
+        case .tags_search:
+            p = "tags/search"
         }
-        
         return "/v2/"+p
     }
     
@@ -69,6 +77,18 @@ extension HeadApi:TargetType {
             parmeters["f"] = f
         case let .team_subjects(f):
             parmeters["f"] = f
+        case let .subjects_search(page,q):
+            parmeters["page"] = page
+            parmeters["page_size"] = 20
+            parmeters["q"] = q
+        case let .articles_search(page,q):
+            parmeters["page"] = page
+            parmeters["page_size"] = 20
+            parmeters["q"] = q
+        case let .tags_search(page,q):
+            parmeters["page"] = page
+            parmeters["page_size"] = 20
+            parmeters["q"] = q
         default:
             break
         }

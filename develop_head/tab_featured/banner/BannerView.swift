@@ -74,7 +74,7 @@ extension BannerView:FSPagerViewDataSource,FSPagerViewDelegate{
         cell.textLabel?.text = model?.title!
         cell.textLabel?.numberOfLines = 0
 //        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-        cell.imageView?.contentMode = .scaleAspectFill
+        cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = true
         return cell
     }

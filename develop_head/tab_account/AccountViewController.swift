@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
+
+
 
 class AccountViewController: MyViewController {
     private lazy var tableView:UITableView = {
-       let tab = UITableView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let tab = UITableView()
+        tab.register(UITableViewCell.self, forCellReuseIdentifier: "tbcell")
         return tab
     }()
-    var data = [
-        ["我订阅的独家号"],
-        ["我的IO币","昨日收益","礼物兑换"],
-        ["我的收藏","最近浏览"],
-        ["意见反馈","合作申请"],
-        ["推荐App给好友"],
-    ]
+    private lazy var sections = {
+        return Observable.just(
+            [
+                SectionModel(model: "my", items: ["我订阅的独家号"]),
+                SectionModel(model: "money", items: ["我的IO币","昨日收益","礼物兑换"]),
+                SectionModel(model: "collect", items: ["我的收藏","最近浏览"]),
+                SectionModel(model: "feedback", items: ["意见反馈","合作申请"]),
+                SectionModel(model: "share", items: ["推荐App给好友"])
+            ]
+        )
+    }()
+
+    let disposeBag = DisposeBag()
     
     private lazy var rightBarButton:UIButton = {
         let button = UIButton.init(type:UIButton.ButtonType.custom)
@@ -31,11 +43,13 @@ class AccountViewController: MyViewController {
     
     @objc func rightClick(button:UIButton){
         print("click")
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         uiConfig()
+
     }
 }
 
@@ -45,22 +59,52 @@ extension AccountViewController{
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: self.rightBarButton)
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
             make.height.equalToSuperview()
         }
+        
+
+        //创建数据源
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String,String>>(
+            //设置单元格
+            configureCell: { ds, tv, index, item in
+                let cell = tv.dequeueReusableCell(withIdentifier: "tbcell")!
+                cell.textLabel?.text = item
+                return cell
+            }
+        )
+        
+        //绑定单元格数据
+        sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        
+        //获取索引
+        tableView.rx
+            .itemSelected
+            .subscribe(onNext: {
+                [weak self]
+                indexPath in
+//                print("选中项的indexPath为：\(indexPath)")
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(String.self).subscribe(onNext: {[weak self] item in
+//            print("选中项的标题为：\(item)")
+        }).disposed(by: disposeBag)
     }
 }
 
-extension AccountViewController:UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
+extension AccountViewController:UITableViewDelegate{
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
     }
@@ -84,27 +128,11 @@ extension AccountViewController:UITableViewDelegate,UITableViewDataSource{
         return view
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = tableView.dequeueReusableCell(withIdentifier:"tbcell")
-        if cell == nil {
-            cell = UITableViewCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: "tbcell")
-        }
-    
-        cell!.textLabel?.text = data[indexPath.section][indexPath.row]
-        return cell!
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section].count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count
-    }
     
 }
+

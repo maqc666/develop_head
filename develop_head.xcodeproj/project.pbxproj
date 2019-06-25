@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		790A353E22A809FA0010A397 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A353D22A809FA0010A397 /* ArticleTableViewController.swift */; };
+		791065C322C1FC9D00073756 /* WebHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791065C222C1FC9D00073756 /* WebHeadView.swift */; };
 		791755AC22A8FB0B003DBA64 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755AB22A8FB0B003DBA64 /* BannerView.swift */; };
 		791755B322A90A1D003DBA64 /* BannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755B222A90A1D003DBA64 /* BannerViewModel.swift */; };
 		792656FB22A3B68E00849DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792656FA22A3B68E00849DA4 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 		138CD259DAC580018308A0A0 /* Pods-develop_head.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-develop_head.release.xcconfig"; path = "Target Support Files/Pods-develop_head/Pods-develop_head.release.xcconfig"; sourceTree = "<group>"; };
 		724C198BEEEBED178A72A9DD /* Pods-develop_head.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-develop_head.debug.xcconfig"; path = "Target Support Files/Pods-develop_head/Pods-develop_head.debug.xcconfig"; sourceTree = "<group>"; };
 		790A353D22A809FA0010A397 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
+		791065C222C1FC9D00073756 /* WebHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebHeadView.swift; sourceTree = "<group>"; };
 		791755AB22A8FB0B003DBA64 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		791755B222A90A1D003DBA64 /* BannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewModel.swift; sourceTree = "<group>"; };
 		792656F722A3B68E00849DA4 /* develop_head.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = develop_head.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		791065C122C1FC8600073756 /* read */ = {
+			isa = PBXGroup;
+			children = (
+				79911ADA22B77E6100E94246 /* ArticleReadViewController.swift */,
+				791065C222C1FC9D00073756 /* WebHeadView.swift */,
+			);
+			path = read;
+			sourceTree = "<group>";
+		};
 		791755AD22A8FB12003DBA64 /* banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,20 +131,20 @@
 			children = (
 				792656FA22A3B68E00849DA4 /* AppDelegate.swift */,
 				7926570C22A3D2F400849DA4 /* Assets.xcassets */,
-				7926572422A51BF800849DA4 /* base */,
 				794B0EFF22A7D9BE00AE4746 /* Constant.swift */,
 				794B0EFB22A7D95400AE4746 /* HeadApi.swift */,
 				794B0EFC22A7D95400AE4746 /* HeadModel.swift */,
 				7926570622A3B69100849DA4 /* Info.plist */,
 				7926570322A3B69100849DA4 /* LaunchScreen.storyboard */,
 				7926570E22A48F2600849DA4 /* MainTabBarController.swift */,
+				7926572422A51BF800849DA4 /* base */,
+				791065C122C1FC8600073756 /* read */,
 				7926571522A4ADF200849DA4 /* tab_account */,
 				7926571222A4AD8200849DA4 /* tab_featured */,
 				7926571322A4ADBD00849DA4 /* tab_message */,
 				794B0F0522A7E07F00AE4746 /* tab_publish */,
 				7926571422A4ADE200849DA4 /* tab_search */,
 				79581BED22AE1456001EAB48 /* test.storyboard */,
-				79911ADA22B77E6100E94246 /* ArticleReadViewController.swift */,
 			);
 			path = develop_head;
 			sourceTree = "<group>";
@@ -344,6 +355,7 @@
 				79BFC71222ADC75A0065E504 /* ArticleNodeTableViewController.swift in Sources */,
 				79911AD322B2274300E94246 /* SubjectTableViewCell.swift in Sources */,
 				792656FB22A3B68E00849DA4 /* AppDelegate.swift in Sources */,
+				791065C322C1FC9D00073756 /* WebHeadView.swift in Sources */,
 				794B0EFD22A7D95400AE4746 /* HeadApi.swift in Sources */,
 				794B0F0022A7D9BE00AE4746 /* Constant.swift in Sources */,
 				79BFC70D22AB1C310065E504 /* ArticleTableViewCell.swift in Sources */,

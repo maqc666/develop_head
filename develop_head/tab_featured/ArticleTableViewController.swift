@@ -17,7 +17,7 @@ class ArticleTableViewController: BaseArticleTableViewController {
 
         self.bannerView = BannerView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: FIT_HEIGHT(210)), withVM: BannerViewModel())
 
-        self.tableView?.tableHeaderView = self.bannerView!
+        self.tableView.tableHeaderView = self.bannerView!
         loadBanner()
         
     }

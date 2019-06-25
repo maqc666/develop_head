@@ -34,14 +34,7 @@ class SubjectTableViewCell : UITableViewCell{
         return button
     }()
     
-    private func genLabel(size:CGFloat, color:UIColor = UIColor.rgba(134,134,134))->UILabel{
-        let label = UILabel()
-        label.font = .systemFont(ofSize: size)
-        label.textAlignment = NSTextAlignment.left
-        label.numberOfLines = 1
-        label.textColor = color
-        return label
-    }
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style:style, reuseIdentifier: reuseIdentifier)

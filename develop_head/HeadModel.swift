@@ -9,6 +9,7 @@
 import Foundation
 import HandyJSON
 
+
 struct BaseResponse<T>:HandyJSON {
     var data : T?
     var errcode : Int = -1
@@ -200,5 +201,58 @@ struct SubjectsInfo:HandyJSON{
             self.pushEnabled <-- "push_enabled"
         mapper <<<
             self.subscriberCount <-- "subscriber_count"
+    }
+}
+
+
+struct ArticleData:HandyJSON{
+    
+    var allowApply : Bool?
+    var applyBtn : String?
+    var author : String?
+    var authorInfo : AuthorInfo?
+    var body : String?
+    var commentCount : Int?
+    var commentDisabled : Bool?
+    var contributor : String?
+    var createdAt : Int?
+    var css : [String]?
+    var displayFullContent : Bool?
+    var eventApplied : Bool?
+    var eventBeginAt : Int?
+    var eventEndAt : Int?
+    var favoriteCount : Int?
+    var id : Int?
+    var image : AnyObject?
+    var isFeatured : Bool?
+    var isRecommend : Bool?
+    var js : [String]?
+    var jsImgNone : [String]?
+    var likeCount : Int?
+    var originalSiteName : String?
+    var originalUrl : String?
+    var shareImageUrl : String?
+    var shareUrl : String?
+    var showOriginContent : Bool?
+    var subject : Subject?
+    var title : String?
+    var user : User?
+    var viewCount : Int?
+    
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.allowApply <-- "allow_apply"
+        mapper <<<
+            self.applyBtn <-- "apply_btn"
+        mapper <<<
+            self.commentCount <-- "comment_count"
+        mapper <<<
+            self.commentDisabled <-- "comment_disabled"
+        mapper <<<
+            self.createdAt <-- "created_at"
+        mapper <<<
+            self.displayFullContent <-- "display_full_content"
+//        mapper <<<
+//            self.webpage <-- "webpage"
     }
 }

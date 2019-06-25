@@ -79,3 +79,13 @@ extension NibLoadable where Self : UIView {
 
 
 typealias Callback<T> = (_ result:T)->Void
+
+
+func genLabel(size:CGFloat = 16, color:UIColor = UIColor.rgba(134,134,134))->UILabel{
+    let label = UILabel()
+    label.font = .systemFont(ofSize: size)
+    label.textAlignment = NSTextAlignment.left
+    label.numberOfLines = 1
+    label.textColor = color
+    return label
+}

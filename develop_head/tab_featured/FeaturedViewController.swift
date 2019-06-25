@@ -17,7 +17,7 @@ class FeaturedViewController: UIViewController {
     private var pageTitleView:SGPageTitleView?;
     private var pageContentScrollView:SGPageContentScrollView?;
     
-//    private lazy var disposeBag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
